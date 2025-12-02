@@ -7,7 +7,7 @@ import authRouter from './routes/auth.route.js';
 import { connectDb } from './lib/db.js';
 
 const app = express()
-app.use(express.json())
+app.use(express.json({ limit: "5mb" }))
 app.use(cookieParser());
 
 dotenv.config()

@@ -1,6 +1,7 @@
 import User from "../models/User.model.js";
 import bcrypt from 'bcryptjs'
 import { generateToken } from "../lib/utils.js";
+import cloudinary from "../lib/cloudinary.js";
 
 const signup = async (req, res) => {
     try {
@@ -112,8 +113,59 @@ const logout = async (req, res) => {
         return res.status(500).json({message:"Internal server error"});
     }
 };
+
+const getCurrentUser = async (req,res)=>{
+    
+    return res.status(200).json({
+        message:"user fetched successfully",
+        data:{user: req.user}
+    });
+    
+};
+
+const updateProfilePic = async (req,res)=>{
+    const {profilePic} = req.body;
+    if(!profilePic) return res.status(400).json({message:"Profile pic is required"});
+
+    const userId = req.user._id;
+
+    try{
+        const uploadedRes = await cloudinary.uploader.upload(profilePic);
+
+        if(!uploadedRes){
+            return res.status(500).json({message:"Error while uploading picture"});
+
+        }
+
+        const updatedUser = await User.findByIdAndUpdate(
+            userId,
+            {
+                profilePic: uploadedRes.secure_url
+            },
+            { new : true}
+        ).select('-password');
+        if(!updatedUser){
+            return res.status(500).json({message:"Error while updating user profile"});
+        }
+
+        return res
+            .status(200)
+            .json({
+                message:"Profile picture updated succcessfully",
+                data:{updatedUser}
+            });
+    }catch(error){
+        console.log("Error in updateProfile controller: ", error);
+        return res.status(500).json({message:"Internal server error"});
+    }
+};
+
+
 export {
     signup,
     login,
-    logout
+    logout,
+    getCurrentUser,
+    updateProfilePic,
+    
 }
