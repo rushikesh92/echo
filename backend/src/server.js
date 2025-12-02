@@ -1,12 +1,14 @@
 import express, { json } from 'express'
 import dotenv from 'dotenv'
 import path from 'path'
+import cookieParser from 'cookie-parser'
 
 import authRouter from './routes/auth.route.js';
 import { connectDb } from './lib/db.js';
 
 const app = express()
 app.use(express.json())
+app.use(cookieParser());
 
 dotenv.config()
 const port = process.env.PORT;
@@ -25,6 +27,6 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.listen(port, () => {
+     connectDb();
     console.log(`Server is listening to port ${port}`);
-    connectDb();
 });
