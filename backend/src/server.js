@@ -2,12 +2,17 @@ import express, { json } from 'express'
 import dotenv from 'dotenv'
 import path from 'path'
 import cookieParser from 'cookie-parser'
+import cors from 'cors'
 
 import { connectDb } from './lib/db.js';
 
 const app = express()
 app.use(express.json({ limit: "5mb" }))
 app.use(cookieParser());
+app.use(cors({
+    origin:process.env.CLIENT_URL,
+    credentials:true
+}));
 
 dotenv.config()
 const port = process.env.PORT;
