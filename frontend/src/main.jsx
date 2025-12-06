@@ -4,22 +4,25 @@ import './index.css'
 import {createBrowserRouter , RouterProvider} from 'react-router-dom'
 import App from './App.jsx'
 import {ChatPage , LoginPage , SignUpPage} from './pages'
+import {AuthLayout} from './components'
+
 const  router = createBrowserRouter([
   {
     path:"/",
     element:<App/>,
     children:[
       {
-        path:"/",
-        element:<ChatPage/>
+        element:<AuthLayout requiresAuth={true}/>,
+        children:[
+            { path:"/", element: <ChatPage/> },
+        ]
       },
       {
-        path:"/login",
-        element:<LoginPage/>
-      },
-      {
-        path:"/signup",
-        element:<SignUpPage/>
+        element:<AuthLayout requiresAuth={false}/>,
+        children:[
+              { path:"/login",  element:<LoginPage/>  },
+              { path:"/signup", element:<SignUpPage/> }
+        ]
       }
     ]
   }
