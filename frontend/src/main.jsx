@@ -14,7 +14,7 @@ const  router = createBrowserRouter([
       {
         element:<AuthLayout requiresAuth={true}/>,
         children:[
-            { path:"/", element: <ChatPage/> },
+            {index:true, element: <ChatPage/> },
         ]
       },
       {

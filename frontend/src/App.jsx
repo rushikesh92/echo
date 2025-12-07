@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import {Outlet} from 'react-router-dom'
 import { useAuthStore } from './store/authStore'
+import {Toaster} from 'react-hot-toast'
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,#7dd3fc33,transparent_60%),radial-gradient(circle_at_80%_70%,#fda4af33,transparent_60%)]" />
       <div className="absolute inset-0 bg-[linear-gradient(#ffffff05_1px,transparent_1px),linear-gradient(90deg,#ffffff05_1px,transparent_1px)] bg-size-[40px_40px]" />        
       <Outlet/>
+      <Toaster/>
     </div>
   )
 }
