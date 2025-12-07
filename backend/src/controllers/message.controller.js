@@ -45,7 +45,7 @@ const sendMessage = async(req,res)=>{
         return res.status(201)
             .json({
                 message:"Message sent",
-                data:{sentMessage: createdMessage}
+                sentMessage: createdMessage,
             })
 
     } catch (error) {
@@ -66,9 +66,7 @@ const getAllContacts = async(req,res)=>{
             .status(200)
             .json({
                 message:"Fetched contacts successfully",
-                data:{
-                    contacts: contacts
-                }
+                contacts: contacts,    
             })
         
     } catch (error) {
@@ -104,7 +102,7 @@ const getAllChats = async(req,res)=>{
     return res.status(200)
         .json({
             messages:"chats fetched successfully",
-            data:{chats}
+            chats:chats,
         })
     
 }
@@ -127,9 +125,7 @@ const getMessagesOfContact = async(req,res)=>{
     return res.status(200)
         .json({
             message:"messages fetched successfully.",
-            data:{
-                messages:messages
-            }
+            messages:messages,
         });
 };
 

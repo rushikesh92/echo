@@ -40,7 +40,7 @@ const signup = async (req, res) => {
             res.status(201).json(
                 {
                     message: "User registered successfully",
-                    data: {
+                    user: {
                         _id: newUser._id,
                         email: newUser.email,
                         fullName: newUser.fullName,
@@ -86,7 +86,7 @@ const login = async (req, res) => {
         res.status(200).json(
                 {
                     message: "User logged in successfully",
-                    data: {
+                    user: {
                         _id: user._id,
                         email: user.email,
                         fullName: user.fullName,
@@ -118,7 +118,7 @@ const getCurrentUser = async (req,res)=>{
     
     return res.status(200).json({
         message:"user fetched successfully",
-        data:{user: req.user}
+        user: req.user,
     });
     
 };
@@ -152,7 +152,7 @@ const updateProfilePic = async (req,res)=>{
             .status(200)
             .json({
                 message:"Profile picture updated succcessfully",
-                data:{updatedUser}
+                user:updatedUser,
             });
     }catch(error){
         console.log("Error in updateProfile controller: ", error);
