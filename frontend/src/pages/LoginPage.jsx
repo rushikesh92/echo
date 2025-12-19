@@ -1,21 +1,23 @@
 import React, { useState } from 'react'
 import { useAuthStore } from '../store/authStore'
-import { Loader,LoaderIcon, MessageCircleIcon ,UserIcon ,MailIcon,LockIcon} from 'lucide-react';
+import { Loader, LoaderIcon, MessageCircleIcon, UserIcon, MailIcon, LockIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import {Container} from '../components';
 
 function LoginPage() {
 
-  const {login, isLoggingIn} = useAuthStore();
-  const [formdata, setFormdata] = useState({email:"g" , password:""});
+  const { login, isLoggingIn } = useAuthStore();
+  const [formdata, setFormdata] = useState({ email: "", password: "" });
 
-  const handleSubmit = (e)=>{
+  const handleSubmit = (e) => {
     e.preventDefault();
     login(formdata);
   }
 
   return (
-     <div className="w-full flex items-center justify-center p-4 bg-slate-900">
-      <div className="relative w-full max-w-6xl md:h-[800px] h-[650px]">
+    <div className="w-full flex items-center justify-center p-4 bg-slate-900">
+      <div className="relative w-full max-w-6xl md:h-[650px] h-[650px]">
+        <Container>
           <div className="w-full flex flex-col md:flex-row">
             {/* left */}
             <div className="md:w-1/2 p-8 flex items-center justify-center md:border-r border-slate-600/30">
@@ -41,7 +43,7 @@ function LoginPage() {
                         value={formdata.email}
                         onChange={(e) => setFormdata({ ...formdata, email: e.target.value })}
                         className="input"
-                        placeholder="johndoe@gmail.com"
+                        placeholder="Enter your email"
                         required
                       />
                     </div>
@@ -102,6 +104,7 @@ function LoginPage() {
               </div>
             </div>
           </div>
+        </Container>
       </div>
     </div>
   )

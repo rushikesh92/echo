@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { useAuthStore } from '../store/authStore'
-import { Loader,LoaderIcon, MessageCircleIcon ,UserIcon ,MailIcon,LockIcon} from 'lucide-react';
+import { Loader, LoaderIcon, MessageCircleIcon, UserIcon, MailIcon, LockIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import {Container} from '../components';
 
 function SignupPage() {
 
   const { isSigningUp, signup } = useAuthStore();
   const [formdata, setFormdata] = useState({ fullName: "", email: "", password: "" });
-  
+
   const handleSubmit = (e) => {
     e.preventDefault();
     signup(formdata);
@@ -15,7 +16,8 @@ function SignupPage() {
 
   return (
     <div className="w-full flex items-center justify-center p-4 bg-slate-900">
-      <div className="relative w-full max-w-6xl md:h-[800px] h-[650px]">
+      <div className="relative w-full max-w-6xl md:h-[650px] h-[650px]">
+        <Container>
           <div className="w-full flex flex-col md:flex-row">
             {/* left */}
             <div className="md:w-1/2 p-8 flex items-center justify-center md:border-r border-slate-600/30">
@@ -40,7 +42,7 @@ function SignupPage() {
                         value={formdata.fullName}
                         onChange={(e) => setFormdata({ ...formdata, fullName: e.target.value })}
                         className="input"
-                        placeholder="John Doe"
+                        placeholder="Enter your name"
                         required
                       />
                     </div>
@@ -57,7 +59,7 @@ function SignupPage() {
                         value={formdata.email}
                         onChange={(e) => setFormdata({ ...formdata, email: e.target.value })}
                         className="input"
-                        placeholder="johndoe@gmail.com"
+                        placeholder="Enter your email"
                         required
                       />
                     </div>
@@ -118,8 +120,9 @@ function SignupPage() {
               </div>
             </div>
           </div>
+        </Container>
       </div>
-    </div>
+    </div >
   )
 }
 
