@@ -17,7 +17,7 @@ function ProfileHeader() {
             <div className='flex gap-2'>
                 <input type='file' accept='image/*' ref={fileInputRef} hidden onChange={handleImageUpload}></input>
                 <div className='w-8 h-8 md:w-12 md:h-12 rounded-full overflow-hidden relative group' onClick={()=>fileInputRef.current.click()}>
-                    {  user.profilePic =="" ? 
+                    {  !user.profilePic? 
                             (<CircleUserRound className='w-8 h-8 md:w-11 md:h-11 group-hover:blur'/> ):
                             ( <img className='object-center object-cover group-hover:blur' src={user.profilePic} alt="pfp" />)
                     }
