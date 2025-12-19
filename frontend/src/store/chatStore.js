@@ -12,6 +12,7 @@ export const useChatStore = create((set, get)=>({
     isLoadingContacts: false,
     isLoadingMessages : false,
     isSendingMessage : false,
+    isVolumeOn: true,
 
     loadChats: async ()=>{
         set( { isLoadingChats : true});
@@ -102,4 +103,6 @@ export const useChatStore = create((set, get)=>({
     setActiveTab : (tab)=>( set( {activeTab:tab} )),
 
     setCurrentChat : (chat)=>( set( {currentChat: chat } )),
+
+    toggleVolume: ()=>(set( {isVolumeOn : !get().isVolumeOn})),
 }))
