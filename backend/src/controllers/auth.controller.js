@@ -44,7 +44,7 @@ const signup = async (req, res) => {
                         _id: newUser._id,
                         email: newUser.email,
                         fullName: newUser.fullName,
-                        profPic: newUser.profPic
+                        profilePic: newUser.profilePic
                     }
                 }
             )
@@ -90,7 +90,7 @@ const login = async (req, res) => {
                         _id: user._id,
                         email: user.email,
                         fullName: user.fullName,
-                        profPic: user.profPic
+                        profilePic: user.profilePic
                     }
                 }
             )
