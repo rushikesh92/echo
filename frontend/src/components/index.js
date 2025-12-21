@@ -7,7 +7,7 @@ import ChatContainer from "./ChatContainer";
 import NoChatPlaceholder from "./NoChatPlaceholder";
 import ProfileHeader from "./ProfileHeader";
 import TabSwitch from "./TabSwitch";
-
+import ChatsLoadingSkeleton from "./ChatsLoadingSkeleton";
 
 export {
     AuthLayout,
@@ -18,5 +18,6 @@ export {
     ChatContainer,
     NoChatPlaceholder,
     ProfileHeader,
-    TabSwitch
+    TabSwitch,
+    ChatsLoadingSkeleton
 }

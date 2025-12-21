@@ -16,7 +16,9 @@ function SignupPage() {
 
   return (
     <div className="w-full flex items-center justify-center p-4 bg-slate-900">
-      <div className="relative w-full max-w-6xl md:h-[650px] h-[650px]">
+      <div className="relative flex flex-col items-center justify-center gap-3 w-full max-w-6xl md:h-[650px] h-[650px]">
+        <div className='text-4xl font-bold font-mono text-sky-200 md:hidden backdrop-blur  '>QuickChat</div>
+
         <Container>
           <div className="w-full flex flex-col md:flex-row">
             {/* left */}
@@ -24,7 +26,6 @@ function SignupPage() {
               <div className="w-full max-w-md">
                 {/* heading */}
                 <div className="text-center mb-8">
-                  <MessageCircleIcon className="w-12 h-12 mx-auto text-slate-400 mb-4" />
                   <h2 className="text-2xl font-bold text-slate-200 mb-2">Create Account</h2>
                   <p className="text-slate-400">Sign up for a new account</p>
                 </div>

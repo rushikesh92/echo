@@ -8,16 +8,16 @@ function ChatPage() {
 
   return (
     <div className="w-full flex items-center justify-center p-4">
-      <div className="relative w-full max-w-6xl md:h-[650px] h-[650px]">
+      <div className="relative w-full  max-w-6xl md:h-[650px] h-[650px]">
         <Container>
-          <div className='w-40 md:w-70 bg-slate-800/10 backdrop-blur-sm flex flex-col'>
+          <div className={`w-full  md:w-70 bg-slate-800/10 backdrop-blur-sm  flex-col ${ currentChat ? "hidden md:flex": "flex"}`}>
             <ProfileHeader />
             <TabSwitch />
             <div className='flex-1 overflow-y-auto p-4 space-y-2'>
               {activeTab === 'chats' ? <ChatList /> : <ContactList />}
             </div>
           </div>
-          <div className='flex-1 flex flex-col bg-slate-900/50 backdrop-blur-sm'>
+          <div className={`flex-1  flex-col  md:block  bg-slate-900/50 backdrop-blur-sm ${currentChat? "flex ": "hidden md:flex"} `}>
             {currentChat ? <ChatContainer /> : <NoChatPlaceholder />}
           </div>
         </Container>

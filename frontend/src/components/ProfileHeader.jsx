@@ -30,22 +30,22 @@ function ProfileHeader() {
     }
 
     return (
-        <div className='w-full flex flex-col md:flex-row justify-between p-5'>
+        <div className='w-full flex flex-row justify-between p-5'>
             <div className='flex gap-2'>
                 <input type='file' accept='image/*' ref={fileInputRef} hidden onChange={handleImageUpload}></input>
-                <div className='w-8 h-8 md:w-12 md:h-12 rounded-full overflow-hidden relative group' onClick={()=>fileInputRef.current.click()}>
+                <div className='w-12 h-12 rounded-full overflow-hidden relative group' onClick={()=>fileInputRef.current.click()}>
                     { ( !user.profilePic && !selectedImage )? 
-                            (<CircleUserRound className='w-8 h-8 md:w-11 md:h-11 group-hover:blur'/> ):
+                            (<CircleUserRound className='w-11 h-11 group-hover:blur'/> ):
                             ( <img className='object-center object-cover group-hover:blur' src={selectedImage ||user.profilePic} alt="pfp" />)
                     }
-                    <Pen className='absolute top-2 left-2 w-3 h-4 md:top-3 md:left-3 md:w-6 md:h-6  opacity-0   group-hover:opacity-90  rounded-lg' strokeWidth={2} />
+                    <Pen className='absolute top-3 left-3 w-6 h-6  opacity-0   group-hover:opacity-90  rounded-lg' strokeWidth={2} />
                 </div>
                 <div className=''>
-                    <p className='font-bold  max-w-18 md:max-w-30 truncate font-sans '>{user.fullName} </p>
-                    <p className='text-sm font-lighth text-slate-400 flex gap-0'><DotIcon  color='lightgreen' strokeWidth={5}/><p>online</p></p>
+                    <p className='font-bold sm:text-sm max-w-40  font-sans '>{user.fullName} </p>
+                    <div className='text-sm font-lighth text-slate-400 flex gap-0'><DotIcon  color='lightgreen' strokeWidth={5}/><p>online</p></div>
                 </div>
             </div>
-            <div className='flex gap-3'>
+            <div className='flex gap-3 items-center justify-center'>
                 <button onClick={logout}>
                     <LogOutIcon strokeWidth={1}/>
                 </button>
