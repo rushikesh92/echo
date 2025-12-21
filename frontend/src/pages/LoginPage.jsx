@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useAuthStore } from '../store/authStore'
 import { Loader, LoaderIcon, MessageCircleIcon, UserIcon, MailIcon, LockIcon } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import {Container} from '../components';
+import { Container } from '../components';
 
 function LoginPage() {
 
@@ -90,15 +90,16 @@ function LoginPage() {
                 <img
                   src="./dialogue.png"
                   alt="signup display"
-                  className="w-[60%] h-auto object-contain"
+                  className="w-[40%] h-auto  object-contain"
                 />
-                <div className="mt-6 text-center">
+                <div className=" text-center flex flex-col gap-3">
+                  <div className='text-4xl font-bold'>QuickChat</div> 
                   <h3 className="text-xl font-medium text-cyan-400">Connect to the world!</h3>
 
-                  <div className="mt-4 flex justify-center gap-4">
+                  <div className=" flex justify-center gap-4">
                     <span className="auth-badge">Free</span>
-                    <span className="auth-badge">Easy Setup</span>
                     <span className="auth-badge">Secure</span>
+                    <span className="auth-badge">Fast</span>
                   </div>
                 </div>
               </div>

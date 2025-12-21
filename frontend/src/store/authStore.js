@@ -67,6 +67,18 @@ export const useAuthStore = create( (set)=>({
             toast.error("Error logging out");
            
         }
+    },
+
+    updateProfilePic: async (profilePic) =>{
+        try {
+            const res = await axiosInstance.patch("auth/update-profile-pic" , {profilePic});
+            toast.success("Profile picture updated")
+
+        } catch (error) {
+            console.log("Error in updateProfilePic : ", error);
+            toast.error("Error updating profile pic");  
+            throw error;
+        }
     }
  
 
