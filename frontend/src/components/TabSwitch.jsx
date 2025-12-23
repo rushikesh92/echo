@@ -1,6 +1,4 @@
 import React from 'react'
-import ChatList from './ChatList'
-import ContactList from './ContactList'
 import { useChatStore } from '../store/chatStore'
 
 function TabSwitch() {

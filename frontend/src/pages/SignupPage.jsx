@@ -16,7 +16,7 @@ function SignupPage() {
 
   return (
     <div className="w-full flex items-center justify-center p-4 bg-slate-900">
-      <div className="relative flex flex-col items-center justify-center gap-3 w-full max-w-6xl md:h-[650px] h-[650px]">
+      <div className="relative flex flex-col items-center justify-center gap-3 w-full max-w-6xl md:h-162.5 h-162.5">
         <div className='text-4xl font-bold font-mono text-sky-200 md:hidden backdrop-blur  '>QuickChat</div>
 
         <Container>

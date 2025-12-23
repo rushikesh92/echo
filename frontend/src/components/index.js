@@ -1,13 +1,16 @@
 import AuthLayout from "./AuthLayout";
-import PageLoader from "./PageLoader";
+import PageLoader from "./placeholders/PageLoader";
 import Container from "./Container";
 import ChatList from "./ChatList";
 import ContactList from "./ContactList";
 import ChatContainer from "./ChatContainer";
-import NoChatPlaceholder from "./NoChatPlaceholder";
 import ProfileHeader from "./ProfileHeader";
 import TabSwitch from "./TabSwitch";
-import ChatsLoadingSkeleton from "./ChatsLoadingSkeleton";
+import NoChatPlaceholder from "./placeholders/NoChatPlaceholder";
+import ChatsLoadingSkeleton from "./skeletons/ChatsLoadingSkeleton";
+import MessageSkeleton from "./skeletons/MessageSkeleton";
+import ChatHeader from "./ChatHeader";
+import EmptyChatHistory from "./placeholders/EmptyChatHistory";
 
 export {
     AuthLayout,
@@ -19,5 +22,8 @@ export {
     NoChatPlaceholder,
     ProfileHeader,
     TabSwitch,
-    ChatsLoadingSkeleton
+    ChatsLoadingSkeleton,
+    MessageSkeleton,
+    ChatHeader,
+    EmptyChatHistory
 }
