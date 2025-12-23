@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import axiosInstance from "../lib/axios";
+import toast from "react-hot-toast";
 
 export const useChatStore = create((set, get)=>({
     chats:[],
@@ -57,11 +58,7 @@ export const useChatStore = create((set, get)=>({
     loadCurrentChatMessages : async (id)=>{
         set( { isLoadingMessages : true});
         try {
-            const res = await axiosInstance.get('/messages' , {
-                params:{
-                    receiverId:id
-                }
-            });
+            const res = await axiosInstance.get(`/messages/${id}`  );
             set({ currentChatMessages: res.data.messages})
             
         } catch (error) {
