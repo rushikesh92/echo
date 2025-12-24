@@ -8,7 +8,7 @@ function ChatPage() {
 
   return (
     <div className="w-full flex items-center justify-center p-4">
-      <div className="relative w-full  max-w-6xl md:h-162.5 h-162.5">
+      <div className="relative w-full  max-w-6xl h-[90vh]">
         <Container>
           <div className={`w-full  md:w-70 bg-slate-800/10 backdrop-blur-sm  flex-col ${ currentChat ? "hidden md:flex": "flex"}`}>
             <ProfileHeader />

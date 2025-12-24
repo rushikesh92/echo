@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { ArrowLeft, EllipsisVertical } from 'lucide-react';
 import { useChatStore } from '../store/chatStore'
 import { useAuthStore } from '../store/authStore';
-import { MessageSkeleton, ChatHeader, EmptyChatHistory } from './index';
+import { MessageSkeleton, ChatHeader, EmptyChatHistory, MessageInput } from './index';
 
 function ChatContainer() {
   const { currentChat, allContacts, chats, setCurrentChat, currentChatMessages, isLoadingMessages, loadCurrentChatMessages } = useChatStore();
@@ -41,12 +41,12 @@ function ChatContainer() {
           {/* chats */}
           <div
             ref={messagesContainerRef}
-            className=' h-[82%] overflow-y-auto'
+            className='h-112 md:h-130 overflow-y-auto'
           >
             {isLoadingMessages ? (
               <div className='h-full '><MessageSkeleton /></div>
             ) : (
-              <div className="flex flex-col gap-2 p-2">
+              <div className="flex  flex-col h-full gap-2 p-2">
 
                 {
                   currentChatMessages.length > 0 ? (
@@ -56,12 +56,13 @@ function ChatContainer() {
                         key={msg._id}
                         className={`flex ${msg.senderId === user._id ? "justify-end" : "justify-start"}`}
                       >
-                        <div className={`max-w-[70%] px-2 py-1 rounded-lg text-sm ${msg.senderId === user._id ? "bg-blue-600/30 text-white rounded-br-none" : "bg-slate-700/40 text-white rounded-bl-none"}`} >
-                          {msg.text ? (
-                            <span>{msg.text}</span>
-                          ) : (
+                        <div className={`flex flex-col max-w-60 h-auto px-2 py-1 rounded-lg text-sm ${msg.senderId === user._id ? "bg-sky-600/60 text-white rounded-br-none" : "bg-slate-700/40 text-white rounded-bl-none"}`} >
+                          {msg.image &&
                             <img src={msg.image} alt="img" className="max-w-40 rounded-lg" loading='lazy' />
-                          )}
+                          }
+                          {msg.text &&
+                            <p className='max-w-40 h-auto overflow-x-auto'>{msg.text}</p>
+                          }
                         </div>
                       </div>
                     ))
@@ -74,8 +75,7 @@ function ChatContainer() {
           </div>
 
           {/* send msg area*/}
-          <div className=' absolute w-full bottom-0 z-10 min-h-[8%] bg-gray-900/10 border border-blue-800/50 rounded-3xl'>
-          </div>
+          <MessageInput />
         </div>
       </>
 

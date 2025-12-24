@@ -11,6 +11,7 @@ import ChatsLoadingSkeleton from "./skeletons/ChatsLoadingSkeleton";
 import MessageSkeleton from "./skeletons/MessageSkeleton";
 import ChatHeader from "./ChatHeader";
 import EmptyChatHistory from "./placeholders/EmptyChatHistory";
+import MessageInput from "./MessageInput";
 
 export {
     AuthLayout,
@@ -25,5 +26,6 @@ export {
     ChatsLoadingSkeleton,
     MessageSkeleton,
     ChatHeader,
-    EmptyChatHistory
+    EmptyChatHistory,
+    MessageInput
 }

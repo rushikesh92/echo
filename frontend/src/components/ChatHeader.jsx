@@ -19,9 +19,9 @@ function ChatHeader() {
                     </div>
                 </div>
             </div>
-            <div onClick={() => null} className='rounded-full hover:bg-gray-500/20 p-1'>
+            {/* <div onClick={() => null} className='rounded-full hover:bg-gray-500/20 p-1'>
                 <EllipsisVertical />
-            </div>
+            </div> */}
         </div>
     )
 }
