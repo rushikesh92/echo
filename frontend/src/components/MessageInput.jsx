@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { FileImage, Send } from 'lucide-react'
 import { useChatStore } from "../store/chatStore";
 import toast from "react-hot-toast";
@@ -10,7 +10,7 @@ function MessageInput() {
 
     const fileInputRef = useRef(null);
 
-    const { sendMessage, isSoundEnabled } = useChatStore();
+    const { sendMessage, isSoundEnabled, currentChat } = useChatStore();
 
     const handleSendMessage = (e) => {
         e.preventDefault();
@@ -41,10 +41,14 @@ function MessageInput() {
         setImagePreview(null);
         if (fileInputRef.current) fileInputRef.current.value = "";
     };
+    useEffect(()=>{
+        removeImage();
+        setText("");
+    },[currentChat])
 
     return (
 
-        <div className=' absolute w-full bottom-0 z-10 h-14 '>
+        <div className=' w-full shrink-0'>
 
             <div className="p-1 border-t border-slate-700/30">
                 {imagePreview && (

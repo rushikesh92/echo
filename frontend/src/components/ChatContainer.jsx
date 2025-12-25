@@ -8,14 +8,15 @@ function ChatContainer() {
   const { currentChat, allContacts, chats, setCurrentChat, currentChatMessages, isLoadingMessages, loadCurrentChatMessages } = useChatStore();
   const { user } = useAuthStore()
 
-  // refs for fast, instant scroll
   const messagesContainerRef = useRef(null);
-  const isInitialScrollRef = useRef(false);
 
-
+  const formatTime = (ts) =>
+    new Date(ts).toLocaleTimeString("en-IN", {
+      hour: "2-digit",
+      minute: "2-digit",
+    });
 
   useEffect(() => {
-    if (currentChat) isInitialScrollRef.current = true;//for auto scroll
     loadCurrentChatMessages(currentChat._id);
   }, [currentChat, loadCurrentChatMessages]);
 
@@ -26,58 +27,52 @@ function ChatContainer() {
 
     messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
 
-    isInitialScrollRef.current = false;
   }, [currentChatMessages, isLoadingMessages, currentChat]);
 
   return (
-    <div className={`h-full flex flex-col`}>
+    <div className={`h-full flex flex-col min-h-0`}>
 
-      <>
-        {/* chat info (header)*/}
-        <ChatHeader />
 
-        <div className='bg-slate-600/10 h-full'>
+      <ChatHeader />
 
-          {/* chats */}
-          <div
-            ref={messagesContainerRef}
-            className='h-112 md:h-130 overflow-y-auto'
-          >
-            {isLoadingMessages ? (
-              <div className='h-full '><MessageSkeleton /></div>
-            ) : (
-              <div className="flex  flex-col h-full gap-2 p-2">
+      <div
+        ref={messagesContainerRef}
+        className=' flex-1 min-h-0 overflow-y-auto bg-slate-600/10 p-2 '
+      >
 
-                {
-                  currentChatMessages.length > 0 ? (
+        {isLoadingMessages ? (
+          <MessageSkeleton />
+        ) : (
 
-                    currentChatMessages.map((msg) => (
-                      <div
-                        key={msg._id}
-                        className={`flex ${msg.senderId === user._id ? "justify-end" : "justify-start"}`}
-                      >
-                        <div className={`flex flex-col max-w-60 h-auto px-2 py-1 rounded-lg text-sm ${msg.senderId === user._id ? "bg-sky-600/60 text-white rounded-br-none" : "bg-slate-700/40 text-white rounded-bl-none"}`} >
-                          {msg.image &&
-                            <img src={msg.image} alt="img" className="max-w-40 rounded-lg" loading='lazy' />
-                          }
-                          {msg.text &&
-                            <p className='max-w-40 h-auto overflow-x-auto'>{msg.text}</p>
-                          }
-                        </div>
-                      </div>
-                    ))
+          currentChatMessages.length > 0 ? (
 
-                  )
-                    : (<EmptyChatHistory />)
-                }
-              </div>
-            )}
-          </div>
+            <div className="flex  flex-col gap-2 p-2">
+              {currentChatMessages.map((msg) => (
+                <div
+                  key={msg._id}
+                  className={`flex ${msg.senderId === user._id ? "justify-end" : "justify-start"}`}
+                >
+                  <div className={`flex flex-col max-w-60 h-auto px-2 py-1 rounded-lg text-sm ${msg.senderId === user._id ? "bg-sky-600/60 text-white rounded-br-none" : "bg-slate-700/40 text-white rounded-bl-none"}`} >
+                    {msg.image &&
+                      <img src={msg.image} alt="img" className="max-w-40 rounded-lg" loading='lazy' />
+                    }
+                    {msg.text &&
+                      <p className='max-w-40 h-auto overflow-x-auto'>{msg.text}</p>
+                    }
+                    <p className='text-[9px] mt-0 opacity-75 '>{formatTime(msg.createdAt)}</p>
+                  </div>
+                </div>
+              ))
+              }
+            </div>
+          )
+            : (<EmptyChatHistory />)
 
-          {/* send msg area*/}
-          <MessageInput />
-        </div>
-      </>
+        )}
+      </div>
+
+      <MessageInput />
+
 
     </div>
   )
