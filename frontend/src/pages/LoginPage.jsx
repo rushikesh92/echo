@@ -16,8 +16,8 @@ function LoginPage() {
 
   return (
     <div className="w-full flex items-center justify-center p-4 bg-slate-900">
-      <div className="relative flex flex-col items-center justify-center gap-3 w-full max-w-6xl md:h-[650px] h-[650px]">
-        <div className='text-4xl font-bold font-mono text-sky-200 md:hidden '>QuickChat</div>
+      <div className="relative   flex-col items-center justify-center gap-3 w-full max-w-6xl md:h-162.5 h-162.5">
+        <div className='text-4xl font-bold font-mono text-sky-200 md:hidden '>Echo</div>
         <Container>
           <div className="w-full flex flex-col md:flex-row">
             {/* left */}
@@ -90,11 +90,11 @@ function LoginPage() {
                 <img
                   src="./dialogue.png"
                   alt="signup display"
-                  className="w-[40%] h-auto  object-contain"
+                  className="w-[30%] h-auto  object-contain"
                 />
                 <div className=" text-center flex flex-col gap-3">
-                  <div className='text-4xl font-bold'>QuickChat</div> 
-                  <h3 className="text-xl font-medium text-cyan-400">Connect to the world!</h3>
+                  <div className='text-4xl font-bold'>Echo</div> 
+                  <h3 className="text-xl font-light text-cyan-400">Connect to the world!</h3>
 
                   <div className=" flex justify-center gap-4">
                     <span className="auth-badge">Free</span>
