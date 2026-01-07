@@ -1,4 +1,5 @@
 import cloudinary from "../lib/cloudinary.js";
+import { getReceiverSocketId, io } from "../lib/socket.js";
 import Message from "../models/Message.model.js";
 import User from "../models/User.model.js";
 
@@ -40,6 +41,12 @@ const sendMessage = async(req,res)=>{
         });
         if(!createdMessage){
             return res.status(500).json({message:"Error while sending message."});
+        }
+
+        //socket.io real time updation
+        const receiverSocketId = getReceiverSocketId(receiver._id);
+        if(receiverSocketId){//if receiver is online
+            io.to(receiverSocketId).emit('newMessage' , createdMessage);
         }
 
         return res.status(201)

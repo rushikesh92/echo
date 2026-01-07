@@ -119,4 +119,33 @@ export const useChatStore = create((set, get) => ({
     setCurrentChat: (chat) => (set({ currentChat: chat })),
 
     toggleVolume: () => (set({ isVolumeOn: !get().isVolumeOn })),
+
+    subscribeToMessages: () => {
+        const currentChat = get().currentChat;
+        if (!currentChat) return;
+
+        const socket = useAuthStore.getState().socket;
+
+        socket.on("newMessage", (newMessage) => {
+            const isMessageFromCurrentChat = newMessage.senderId === currentChat._id;
+
+            if (!isMessageFromCurrentChat) return;
+
+            const messages = get().currentChatMessages;
+            set({ currentChatMessages: [...messages, newMessage] });
+
+            const isVolumeOn = get().isVolumeOn;
+            if (isVolumeOn) {
+                const notificationSound = new Audio("/sounds/notification.mp3");
+                notificationSound.currentTime = 0;
+                notificationSound.play().catch((e) => console.log("Error playing notification sound : ", e));
+            }
+        });
+
+    },
+
+    unsubscribeFromMessages: () => {
+        const socket = useAuthStore.getState().socket;
+        socket.off("newMessage");
+    },
 }))

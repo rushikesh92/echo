@@ -5,7 +5,7 @@ import { useAuthStore } from '../store/authStore';
 import { MessageSkeleton, ChatHeader, EmptyChatHistory, MessageInput } from './index';
 
 function ChatContainer() {
-  const { currentChat, allContacts, chats, setCurrentChat, currentChatMessages, isLoadingMessages, loadCurrentChatMessages } = useChatStore();
+  const { currentChat, allContacts, chats, setCurrentChat, currentChatMessages, isLoadingMessages, loadCurrentChatMessages, subscribeToMessages,unsubscribeFromMessages } = useChatStore();
   const { user } = useAuthStore()
 
   const messagesContainerRef = useRef(null);
@@ -18,6 +18,9 @@ function ChatContainer() {
 
   useEffect(() => {
     loadCurrentChatMessages(currentChat._id);
+    subscribeToMessages();
+
+      return () => unsubscribeFromMessages();
   }, [currentChat, loadCurrentChatMessages]);
 
   useLayoutEffect(() => {
@@ -27,7 +30,7 @@ function ChatContainer() {
 
     messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
 
-  }, [currentChatMessages, isLoadingMessages, currentChat]);
+  }, [currentChatMessages, isLoadingMessages, currentChat, subscribeToMessages, unsubscribeFromMessages]);
 
   return (
     <div className={`h-full flex flex-col min-h-0`}>
