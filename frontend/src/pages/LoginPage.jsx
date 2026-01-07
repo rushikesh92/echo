@@ -17,7 +17,7 @@ function LoginPage() {
   return (
     <div className="w-full flex items-center justify-center p-4 bg-slate-900">
       <div className="relative   flex-col items-center justify-center gap-3 w-full max-w-6xl md:h-162.5 h-162.5">
-        <div className='text-4xl font-bold font-mono text-sky-200 md:hidden '>Echo</div>
+        <div className='text-4xl font-bold font-mono text-sky-200 text-center mb-4 md:hidden '>Echo</div>
         <Container>
           <div className="w-full flex flex-col md:flex-row">
             {/* left */}

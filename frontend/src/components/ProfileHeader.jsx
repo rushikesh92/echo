@@ -8,7 +8,7 @@ function ProfileHeader() {
     const fileInputRef = useRef(null);
 
     const { isVolumeOn, toggleVolume } = useChatStore();
-    const { logout, user ,updateProfilePic} = useAuthStore();
+    const { logout, user ,updateProfilePic, onlineUsers} = useAuthStore();
     const [selectedImage , setSelectedImage] = useState(null);
 
      const handleImageUpload =(e)=>{
@@ -42,7 +42,11 @@ function ProfileHeader() {
                 </div>
                 <div className=''>
                     <p className='font-bold sm:text-sm max-w-40  font-sans '>{user.fullName} </p>
-                    <div className='text-sm font-lighth text-slate-400 flex gap-0'><DotIcon  color='lightgreen' strokeWidth={5}/><p>online</p></div>
+                    <div className='text-sm font-light text-slate-400 flex'>
+                        { onlineUsers.includes(user._id) ? 
+                            <div className='flex'><DotIcon  color='lightgreen' strokeWidth={5}/><p>online</p></div>
+                            :   <p  className='ml-1'>connecting...</p>}
+                    </div>
                 </div>
             </div>
             <div className='flex gap-3 items-center justify-center'>

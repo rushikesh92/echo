@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react'
 import { useChatStore } from '../store/chatStore'
 import {ChatsLoadingSkeleton} from './index';
+import { useAuthStore } from '../store/authStore';
 
 function ContactList() {
   const { allContacts, loadAllContacts, setCurrentChat, isLoadingContacts } = useChatStore();
+  const {onlineUsers} = useAuthStore();
   useEffect(() => {
     loadAllContacts();
   }, [])
@@ -18,7 +20,9 @@ function ContactList() {
               <div className='w-9 h-9 overflow-hidden rounded-4xl'>  <img src={contact.profilePic || "./avatar.png"} className='h-full cover' alt="pfp" /></div>
               <div className='flex flex-col align-middle justify-center'>
                 <p className='text-sm'>{contact.fullName}</p >
-                <p className='text-[13px] text-slate-200/70  font-extralight'>offline</p >
+                <p className='text-[13px] text-slate-200/70  font-extralight'>
+                    {onlineUsers.includes(contact._id) ? <p className='text-emerald-500'>online</p> : <p>offline</p> }
+                </p >
 
               </div>
             </div>
